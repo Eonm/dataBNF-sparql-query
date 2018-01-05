@@ -1,0 +1,10 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?sujet ?label #1ère colonne = l'URL de la notice (?sujet) ¦ 2e colonne = mot sujet (?label)
+WHERE {
+  ?sujet dcterms:isPartOf <http://data.bnf.fr/vocabulary/scheme/r166> ;  #Recherche parmis l'ensemble des noms communs du Rameau
+
+  skos:prefLabel ?label.  # Selectionne la forme retenue du mot sujet qui sera affiché dans colonne ?label
+
+  FILTER (regex(str(?label),"^Histoire") && !regex(str(?label),"drôle"))  #Recherche les mots sujets (?label) comprenant le terme Histoire et n'ayant pas le mot sujet de littérature : "Histoire drôle"
+}
+ORDER BY ?label # trier les resultats par mots sujets et par ordre alphabétique
