@@ -1,0 +1,24 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?sujet ?label ?label2 ?label3
+WHERE {
+  ?sujet dcterms:isPartOf <http://data.bnf.fr/vocabulary/scheme/r166> ;  #Recherche parmis l'ensemble des noms communs du Rameau
+  skos:prefLabel ?label. #Cherche la forme retenue de ce mot sujet et l'affiche dans la colonne ?label
+  
+  
+
+  OPTIONAL{
+  ?sujet skos:narrower ?uri2. #Pour chaque mot sujet : recherche l'ensemble des « sous-mots sujets »
+  ?uri2 skos:prefLabel ?label2 #Cherche la forme retenue des sous-mots sujet et l'affiche dans la colonne ?label2
+
+     OPTIONAL{
+        ?uri2 skos:narrower ?uri3.  #Pour chaque sous-sujet : recherche l'ensemble des « sous-sous-mot sujet »
+        ?uri3 skos:prefLabel ?label3 #Cherche la forme retenue pour l'ensemble des sous-sous-mot sujet et l'affiche dans la colonne ?label3
+
+    }
+
+  }
+  
+  FILTER regex(str(?label),'istoriographie') #Recherche parmis les mots sujet comprenant le terme 'istoriographie'
+  
+}
+ORDER BY ?label
