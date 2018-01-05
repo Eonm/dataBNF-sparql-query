@@ -1,0 +1,11 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT ?sujet ?label
+WHERE {
+  ?sujet dcterms:isPartOf <http://data.bnf.fr/vocabulary/scheme/r166> ;
+  skos:prefLabel ?label.
+
+
+  FILTER (regex(str(?label),"^France -- .*[0-9][0-9][0-9]"))
+}
+ORDER BY ?label
