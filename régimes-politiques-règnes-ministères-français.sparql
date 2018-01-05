@@ -1,0 +1,6 @@
+SELECT DISTINCT ?sujet ?label
+WHERE {
+  ?sujet skos:prefLabel ?label.
+  
+  FILTER (regex(str(?label), "^France -- [0-9]"))
+}
