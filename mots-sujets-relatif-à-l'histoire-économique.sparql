@@ -1,0 +1,24 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT ?sujet ?label ?label2 ?label3
+WHERE {
+  ?sujet dcterms:isPartOf <http://data.bnf.fr/vocabulary/scheme/r166> ;
+  skos:prefLabel ?label.
+
+  OPTIONAL {
+
+    ?sujet skos:narrower ?uri2.
+    ?uri2 skos:prefLabel ?label2
+
+      OPTIONAL {
+
+    ?uri2 skos:narrower ?uri3.
+    ?uri3 skos:prefLabel ?label3
+
+    }
+
+}
+
+  FILTER regex(str(?label),"^Histoire économique")
+}
+ORDER BY ?label
