@@ -1,6 +1,6 @@
 # dataBNF-sparql-query
 
-Répertoire de requêtes, permettant de trouver les notices d'autorités relatives à la discipline historique depuis le site  http://data.bnf.fr/sparql/
+Répertoire de requêtes permettant de trouver les notices d'autorités relatives à la discipline historique depuis le site  http://data.bnf.fr/sparql/
 
 ## Liens vers les données de la BNF
 
